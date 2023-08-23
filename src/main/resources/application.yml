@@ -1,0 +1,51 @@
+server:
+  port:8089
+
+spring:
+  application:
+    name: core-user-management-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_management
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non:
+              contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+info:
+  app:
+    name: ${spring.application.name}
+
+db:
+  host: ${spring.datasource.url}
+  username: ${spring.datasource.username}
+  password: ${spring.datasource.password}
+  driver:
+    class:
+      name: org.postgresql.Driver
+  pool:
+    maximum: 10
+    minimum: 1
+    idle: 1
+    leak:
+      detect:
+        threshold: 10000
+    life:
+      time:
+        max: 100000
+    connect:
+      time:
+        out: 2000
+    keepAlive: 100000
