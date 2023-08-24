@@ -25,9 +25,9 @@ public class UserManagementController {
     }
 
     @ResponseBody
-    @PostMapping("/user/find/{id}")
+    @PostMapping("/user/find")
     public UserDto fingById(@RequestBody UserDto req) throws ParseException {
-        log.info("/user/add");
+        log.info("/user/find");
         return userManagementService.findById(req);
     }
 }
