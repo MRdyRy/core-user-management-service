@@ -64,7 +64,7 @@ public class UserManagementService {
                 isSuccess = Boolean.TRUE;
 
         }catch (Exception e){
-            throw e;
+            log.error(e.getMessage());
         }
         return isSuccess;
     }
@@ -80,7 +80,8 @@ public class UserManagementService {
             if(m.isPresent() && d.isPresent() && a.isPresent())
                 userDto1 = doMappingResponse(m, d, a);
         }catch (Exception e){
-            throw e;
+            log.error(e.getMessage());
+            return userDto1;
         }
         return userDto1;
     }
