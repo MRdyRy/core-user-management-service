@@ -102,7 +102,7 @@
 <!--                        <exclude>com/rudy/ryanto/core/management/config/**.java</exclude>-->
 <!--                        <exclude>com/rudy/ryanto/core/management/repository/**.java</exclude>-->
 <!--                        <exclude>com/rudy/ryanto/core/management/util/**.java</exclude>-->
-                        <exclude>com/rudy/ryanto/core/management/CoreUserManagementServiceApplication.java</exclude>
+<!--                        <exclude>com/rudy/ryanto/core/management/CoreUserManagementServiceApplication.java</exclude>-->
                         <exclude>com/rudy/ryanto/core/management/domain/**.class</exclude>
                         <exclude>com/rudy/ryanto/core/management/entity/**.class</exclude>
                         <exclude>com/rudy/ryanto/core/management/config/**.class</exclude>
