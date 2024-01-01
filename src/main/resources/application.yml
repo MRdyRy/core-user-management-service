@@ -30,7 +30,7 @@ info:
     name: ${spring.application.name}
 
 db:
-  host: jdbc:postgresql://localhost:5432/food
+  host: jdbc:postgresql://localhost:5432/user_management
   username: postgres
   password: postgres
   driver:
