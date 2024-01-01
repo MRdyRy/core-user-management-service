@@ -97,12 +97,18 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>com/rudy/ryanto/core/management/domain/*.java</exclude>
-                        <exclude>com/rudy/ryanto/core/management/entity/*.java</exclude>
-                        <exclude>com/rudy/ryanto/core/management/config/*.java</exclude>
-                        <exclude>com/rudy/ryanto/core/management/repository/*.java</exclude>
-                        <exclude>com/rudy/ryanto/core/management/util/*.java</exclude>
+<!--                        <exclude>com/rudy/ryanto/core/management/domain/**.java</exclude>-->
+<!--                        <exclude>com/rudy/ryanto/core/management/entity/**.java</exclude>-->
+<!--                        <exclude>com/rudy/ryanto/core/management/config/**.java</exclude>-->
+<!--                        <exclude>com/rudy/ryanto/core/management/repository/**.java</exclude>-->
+<!--                        <exclude>com/rudy/ryanto/core/management/util/**.java</exclude>-->
                         <exclude>com/rudy/ryanto/core/management/CoreUserManagementServiceApplication.java</exclude>
+                        <exclude>com/rudy/ryanto/core/management/domain/**.class</exclude>
+                        <exclude>com/rudy/ryanto/core/management/entity/**.class</exclude>
+                        <exclude>com/rudy/ryanto/core/management/config/**.class</exclude>
+                        <exclude>com/rudy/ryanto/core/management/repository/**.class</exclude>
+                        <exclude>com/rudy/ryanto/core/management/util/**.class</exclude>
+                        <exclude>com/rudy/ryanto/core/management/CoreUserManagementServiceApplication.class</exclude>
                     </excludes>
                 </configuration>
             </plugin>
