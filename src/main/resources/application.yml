@@ -4,10 +4,11 @@ server:
 spring:
   application:
     name: core-user-management-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/user_management
-    username: postgres
-    password: postgres
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/user_management
+#    username: postgres
+#    password: postgres
+#    driverClassName: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
@@ -29,9 +30,9 @@ info:
     name: ${spring.application.name}
 
 db:
-  host: ${spring.datasource.url}
-  username: ${spring.datasource.username}
-  password: ${spring.datasource.password}
+  host: jdbc:postgresql://localhost:5432/food
+  username: postgres
+  password: postgres
   driver:
     class:
       name: org.postgresql.Driver
