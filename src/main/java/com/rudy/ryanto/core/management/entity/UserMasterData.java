@@ -6,9 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity(name = "USER_MASTER_DATA")
 @Builder
@@ -17,6 +15,7 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 public class UserMasterData {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String userName;
