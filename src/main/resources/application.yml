@@ -18,7 +18,7 @@ spring:
               contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 eureka:
   client:

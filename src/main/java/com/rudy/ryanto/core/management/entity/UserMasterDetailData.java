@@ -15,18 +15,29 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserMasterDetailData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "idmaster")
     private Long idMaster;
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "sex")
+    @Enumerated(EnumType.STRING)
     private UserManagementConstant.Sex sex;
+    @Column(name = "fullname")
     private String fullName;
 
+    @Column(name = "dob")
     @Temporal(TemporalType.DATE)
     private Date dob;
+    @Column(name = "placeofbirth")
     private String placeOfBirth;
+    @Column(name = "idnumber")
     private String idNumber;
+    @Column(name = "idtype")
     @Enumerated(EnumType.STRING)
     private UserManagementConstant.IdType idType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "simtype")
     private UserManagementConstant.SIMType simType;
 }

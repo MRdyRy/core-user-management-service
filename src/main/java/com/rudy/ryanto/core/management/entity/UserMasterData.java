@@ -15,12 +15,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class UserMasterData {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+
+    @Column(name = "username")
     private String userName;
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
     private UserManagementConstant.Status status;
 }

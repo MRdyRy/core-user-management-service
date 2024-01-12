@@ -8,6 +8,7 @@ import com.rudy.ryanto.core.management.repository.UserAddressRepository;
 import com.rudy.ryanto.core.management.repository.UserDetailManagemenrRepository;
 import com.rudy.ryanto.core.management.repository.UserManagementRepository;
 import com.rudy.ryanto.core.management.util.Formatter;
+import com.rudy.ryanto.core.management.util.SequenceGenerator;
 import com.rudy.ryanto.core.management.util.UserManagementConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,54 +33,62 @@ public class UserManagementService {
 
     @SuppressWarnings("all")
     public Boolean doSaveNewUser(UserDto req) throws ParseException {
-        log.info("doSaveNewUser : {}",req);
+        log.info("doSaveNewUser : {}", req);
         Boolean isSuccess = Boolean.FALSE;
         try {
-            var masterData = userManagementRepository.save(UserMasterData.builder()
-                            .userName(req.getUserName())
-                            .email(req.getEmail())
-                            .status(UserManagementConstant.Status.REGISTERED)
+
+            Long id = SequenceGenerator.generateId();
+            log.info("id generated : {}",id);
+            var masterData = saveEntityReturnId(UserMasterData.builder()
+                    .userName(req.getUserName())
+                    .email(req.getEmail())
+                    .status(UserManagementConstant.Status.REGISTERED)
                     .build());
 
             var detail = userDetailManagemenrRepository.save(UserMasterDetailData.builder()
-                            .idMaster(masterData.getId())
-                            .fullName(req.getFullName())
-                            .sex(UserManagementConstant.Sex.valueOf(req.getSex()))
-                            .dob(Formatter.sdf.parse(req.getDob()))
-                            .idType(UserManagementConstant.IdType.valueOf(req.getIdType()))
-                            .idNumber(req.getIdNumber())
-                            .simType(UserManagementConstant.SIMType.valueOf(req.getSimType()))
-                            .placeOfBirth(req.getPlaceOfBirth())
+                    .idMaster(masterData.getId())
+                    .fullName(req.getFullName())
+                    .sex(UserManagementConstant.Sex.valueOf(req.getSex()))
+                    .dob(Formatter.sdf.parse(req.getDob()))
+                    .idType(UserManagementConstant.IdType.valueOf(req.getIdType()))
+                    .idNumber(req.getIdNumber())
+                    .simType(UserManagementConstant.SIMType.valueOf(req.getSimType()))
+                    .placeOfBirth(req.getPlaceOfBirth())
                     .build());
 
             var address = userAddressRepository.save(UserMasterAddress.builder()
-                            .idMaster(masterData.getId())
-                            .national(req.getNational())
-                            .postalCode(req.getPostalCode())
-                            .province(req.getProvince())
-                            .StreetName(req.getStreetName())
+                    .idMaster(masterData.getId())
+                    .national(req.getNational())
+                    .postalCode(req.getPostalCode())
+                    .province(req.getProvince())
+                    .StreetName(req.getStreetName())
                     .build());
 
-            if(masterData!=null && detail!=null && address!=null)
+            if (masterData != null && detail != null && address != null)
                 isSuccess = Boolean.TRUE;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
         return isSuccess;
     }
 
+    @Transactional
+    private UserMasterData saveEntityReturnId(UserMasterData o) {
+        return userManagementRepository.save(o);
+    }
+
     @Transactional(readOnly = true)
-    public UserDto findById(UserDto req){
-        log.info("findbyid : {}",req);
+    public UserDto findById(UserDto req) {
+        log.info("findbyid : {}", req);
         UserDto userDto1 = null;
         try {
             var m = userManagementRepository.findById(req.getUserId());
             var d = userDetailManagemenrRepository.findByIdMaster(req.getUserId());
             var a = userAddressRepository.findByIdMaster(req.getUserId());
-            if(m.isPresent() && d.isPresent() && a.isPresent())
+            if (m.isPresent() && d.isPresent() && a.isPresent())
                 userDto1 = doMappingResponse(m, d, a);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return userDto1;
         }
